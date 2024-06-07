@@ -9,18 +9,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import com.example.shoesapp.Components.ProductItem
 import com.example.shoesapp.Models.ProductModel
 import com.example.shoesapp.R
 
 @Composable
 fun ProductScreen() {
-    var product= remember {
+    var products= remember {
         GetProductList()
     }
 
 
-    LazyVerticalGrid(columns = GridCells.Fixed(4),modifier= Modifier.padding(8.dp)){
-        items(product){
+    LazyVerticalGrid(columns = GridCells.Fixed(2),modifier= Modifier.padding(8.dp)){
+        items(products){
+            ProductItem(product = it)
 
         }
     }
@@ -39,7 +41,7 @@ fun GetProductList(): List<ProductModel> {
             discountPrice = 10000f,
             Size = 10,
             rating = 4.2f,
-            imageRes = R.drawable.nike_purple
+            imageRes = R.drawable.p1
         ),
         ProductModel(
             id = "2",
@@ -47,79 +49,79 @@ fun GetProductList(): List<ProductModel> {
             shoeColor = Color.Red,
             price = 12000f,
             discountPrice = 10000f,
-            Size = 10,
+            Size = 9,
             rating = 4.2f,
-            imageRes = R.drawable.nike_red_black
+            imageRes = R.drawable.p2
         ),
         ProductModel(
             id = "3",
             name = "Nike Blue",
-            shoeColor = Color.Blue,
+            shoeColor = Color.Black,
             price = 12000f,
             discountPrice = 10000f,
             Size = 10,
             rating = 4.2f,
-            imageRes = R.drawable.nike_purple
+            imageRes = R.drawable.p3
         ),
         ProductModel(
             id = "4",
             name = "Nike ",
-            shoeColor = Color.Blue,
+            shoeColor = Color.White,
             price = 12000f,
             discountPrice = 10000f,
-            Size = 10,
+            Size = 7,
             rating = 4.2f,
-            imageRes = R.drawable.nike_red_black
+            imageRes = R.drawable.p4
         ),
         ProductModel(
             id = "5",
             name = "Nike",
-            shoeColor = Color.Blue,
+            shoeColor = Color.Gray,
             price = 12000f,
             discountPrice = 10000f,
-            Size = 10,
+            Size = 9,
             rating = 4.2f,
-            imageRes = R.drawable.nike_purple
+            imageRes = R.drawable.p5
         ),
         ProductModel(
             id = "6",
             name = "Nike ",
-            shoeColor = Color.Blue,
+            shoeColor = Color.Gray,
             price = 12000f,
             discountPrice = 10000f,
-            Size = 10,
+            Size = 8,
             rating = 4.2f,
-            imageRes = R.drawable.nike_red_black
+            imageRes = R.drawable.p6
         ),
         ProductModel(
             id = "7",
             name = "Nike",
-            shoeColor = Color.Blue,
+            shoeColor = Color.Yellow,
             price = 12000f,
             discountPrice = 10000f,
-            Size = 10,
+            Size = 11,
             rating = 4.2f,
-            imageRes = R.drawable.nike_purple
+            imageRes = R.drawable.p7
         ),
         ProductModel(
             id = "8",
             name = "Nike ",
-            shoeColor = Color.Blue,
+            shoeColor = Color.Yellow,
             price = 12000f,
             discountPrice = 10000f,
             Size = 10,
             rating = 4.2f,
-            imageRes = R.drawable.nike_red_black
+            imageRes = R.drawable.p8
         ),
         ProductModel(
             id = "9",
             name = "Nike",
-            shoeColor = Color.Blue,
+            shoeColor = Color.Black,
             price = 12000f,
             discountPrice = 10000f,
-            Size = 10,
+            Size = 9,
             rating = 4.2f,
-            imageRes = R.drawable.nike_purple
+            imageRes = R.drawable.p9
         ),
     )
 
