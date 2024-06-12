@@ -62,7 +62,6 @@ fun ProductItem(
             .padding(20.dp)
             .size(168.dp, 210.dp)
     ) {
-
         Box(
             modifier = Modifier
                 .fillMaxSize()
@@ -92,7 +91,6 @@ fun ProductItem(
             modifier = Modifier.align(Alignment.TopCenter)
         )
 
-
         Image(
             painter = painterResource(id = product.imageRes), contentDescription = null,
             modifier = Modifier
@@ -102,10 +100,6 @@ fun ProductItem(
                 .offset(40.dp, (-20).dp)
                 .size(100.dp)
         )
-
-
-
-
         Column(
             modifier = Modifier.align(Alignment.BottomEnd)
         ) {
@@ -113,7 +107,6 @@ fun ProductItem(
                 fontWeight = FontWeight.Bold,
                 fontSize = 10.sp,
                 modifier= Modifier.padding(end = 8.dp))
-
 
             Text(text = "Rs. ${product.price}",
                 fontWeight = FontWeight.Bold,
