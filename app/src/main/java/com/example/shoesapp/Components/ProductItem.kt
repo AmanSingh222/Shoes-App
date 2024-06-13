@@ -45,7 +45,7 @@ fun ProductItem(
         shoeColor = colorResource(id = R.color.grey2),
         price = 12000f,
         discountPrice = 10000f,
-        Size = 10,
+        Size = 11,
         rating = 4.2f,
         imageRes = R.drawable.p1
     )
