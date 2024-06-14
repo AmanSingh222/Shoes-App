@@ -1,8 +1,8 @@
 package com.example.shoesapp.Components
 
-import android.graphics.Paint.Style
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -48,7 +48,8 @@ fun ProductItem(
         Size = 11,
         rating = 4.2f,
         imageRes = R.drawable.p1
-    )
+    ),
+    onClick: () -> Unit = {}
 ) {
 
     var color by remember {
@@ -60,7 +61,7 @@ fun ProductItem(
     Box(
         modifier = Modifier
             .padding(20.dp)
-            .size(168.dp, 210.dp)
+            .size(168.dp, 210.dp).clickable {onClick.invoke() }
     ) {
         Box(
             modifier = Modifier
@@ -103,15 +104,20 @@ fun ProductItem(
         Column(
             modifier = Modifier.align(Alignment.BottomEnd)
         ) {
-            Text(text = "Rs. ${product.discountPrice}",
+            Text(
+                text = "Rs. ${product.discountPrice}",
                 fontWeight = FontWeight.Bold,
                 fontSize = 10.sp,
-                modifier= Modifier.padding(end = 8.dp))
+                modifier = Modifier.padding(end = 8.dp)
+            )
 
-            Text(text = "Rs. ${product.price}",
+            Text(
+                text = "Rs. ${product.price}",
                 fontWeight = FontWeight.Bold,
                 fontSize = 8.sp,
-                modifier= Modifier.padding(end = 8.dp, bottom = 8.dp).align(Alignment.End),
+                modifier = Modifier
+                    .padding(end = 8.dp, bottom = 8.dp)
+                    .align(Alignment.End),
                 style = TextStyle(
                     textDecoration = TextDecoration.LineThrough
                 )

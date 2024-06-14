@@ -9,12 +9,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.Navigation
 import com.example.shoesapp.Components.ProductItem
 import com.example.shoesapp.Models.ProductModel
+import com.example.shoesapp.Navigation.NavigationItem
 import com.example.shoesapp.R
 
 @Composable
-fun ProductScreen() {
+fun ProductScreen(navController: NavController) {
     var products= remember {
         GetProductList()
     }
@@ -22,8 +26,9 @@ fun ProductScreen() {
 
     LazyVerticalGrid(columns = GridCells.Fixed(2),modifier= Modifier.padding(8.dp)){
         items(products){
-            ProductItem(product = it)
-
+            ProductItem(product = it) {
+                navController.navigate("NavigationItem.PRODUCT_DETAILS/${it.id}")
+            }
         }
     }
 }

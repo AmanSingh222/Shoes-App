@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -26,7 +27,9 @@ import androidx.compose.material.icons.outlined.Star
 import androidx.compose.material.icons.rounded.Favorite
 import androidx.compose.material.icons.rounded.FavoriteBorder
 import androidx.compose.material.icons.rounded.KeyboardArrowLeft
+import androidx.compose.material.icons.rounded.ShoppingCart
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -54,11 +57,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import kotlinx.coroutines.delay
 
-@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun ProductDetailScreen(productId: String = "1") {
+fun ProductDetailScreen(productId: String = "1",navController: NavController) {
 
     val product = GetProductList().find {
         it.id == productId
@@ -141,7 +144,7 @@ fun ProductDetailScreen(productId: String = "1") {
 
         //this is back button
         IconButton(
-            onClick = {},
+            onClick = {navController.popBackStack()},
             modifier = Modifier
                 .padding(start = 16.dp, top = 16.dp)
                 .shadow(
@@ -220,15 +223,15 @@ fun ProductDetailScreen(productId: String = "1") {
                 }
                 Text(
                     text = "Rs. ${product.price}",
-                    modifier = Modifier.padding(top = 4.dp),
+                    modifier = Modifier.padding(top = 20.dp),
                     fontSize = 36.sp,
                     color = Color.Black,
-
                     style = TextStyle(
                         platformStyle = PlatformTextStyle(
                             includeFontPadding = false
                         )
-                    )
+                    ),
+                    fontWeight = FontWeight.Bold
                 )
             }
 
@@ -349,22 +352,35 @@ fun ProductDetailScreen(productId: String = "1") {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 6.dp)
+                    .padding(bottom = 16.dp)
                     .padding(horizontal = 22.dp)
             ) {
 
 
-                IconButton(onClick = { isFovorite != isFovorite }) {
+                IconButton(onClick = { isFovorite = !isFovorite }) {
                     Icon(
                         imageVector = if (isFovorite) Icons.Rounded.Favorite else Icons.Rounded.FavoriteBorder,
                         contentDescription = null,
-                        tint = if (isFovorite) Color.Red else MaterialTheme.colorScheme.onSurface)
+                        tint = if (isFovorite) Color.Red else MaterialTheme.colorScheme.onSurface
+                    )
                 }
-                
+
                 Spacer(modifier = Modifier.width(4.dp))
-                
-                Button(onClick = { /*TODO*/ }) {
-                    
+                //This is cart button
+                Button(
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(48.dp)
+                        .padding(start = 8.dp),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Blue
+                    )
+                ) {
+                    Icon(imageVector = Icons.Rounded.ShoppingCart, contentDescription = null)
+                    Text(text = "Add to Cart")
+
                 }
 
 
@@ -421,7 +437,6 @@ fun ProductColor(
     isSelected: Boolean,
     onClick: () -> Unit
 ) {
-
     val BorderColor = if (isSelected) MaterialTheme.colorScheme.primary else Color.Transparent
 
     Box(
