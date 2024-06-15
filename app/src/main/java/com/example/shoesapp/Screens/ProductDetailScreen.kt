@@ -1,5 +1,6 @@
 package com.example.shoesapp.Screens
 
+import android.widget.Toast
 import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
@@ -49,24 +50,28 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.DefaultShadowColor
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import kotlinx.coroutines.delay
 
+
 @Composable
-fun ProductDetailScreen(productId: String = "1",navController: NavController) {
+fun ProductDetailScreen(productId: String = "1", navController: NavController) {
 
     val product = GetProductList().find {
         it.id == productId
 
     }!!
+
+
+    val context= LocalContext.current;
 
     var xOffset: Dp by remember {
         mutableStateOf(800.dp)
@@ -92,12 +97,11 @@ fun ProductDetailScreen(productId: String = "1",navController: NavController) {
         mutableStateOf(product.shoeColor)
     }
 
-
     var productScale by remember {
         mutableStateOf(0.6f)
     }
     var productRotate by remember {
-        mutableStateOf(-60f)
+        mutableStateOf(-20f)
     }
     var selectedSize by remember {
         mutableStateOf(product.Size.toString())
@@ -109,10 +113,6 @@ fun ProductDetailScreen(productId: String = "1",navController: NavController) {
 
     val animationProductState = animateFloatAsState(targetValue = productScale)
     val animationProductRotate = animateFloatAsState(targetValue = productRotate)
-
-
-
-
 
     LaunchedEffect(true) {
         delay(150)
@@ -144,7 +144,7 @@ fun ProductDetailScreen(productId: String = "1",navController: NavController) {
 
         //this is back button
         IconButton(
-            onClick = {navController.popBackStack()},
+            onClick = { navController.popBackStack() },
             modifier = Modifier
                 .padding(start = 16.dp, top = 16.dp)
                 .shadow(
@@ -368,7 +368,7 @@ fun ProductDetailScreen(productId: String = "1",navController: NavController) {
                 Spacer(modifier = Modifier.width(4.dp))
                 //This is cart button
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = { Toast.makeText(context,"Added",Toast.LENGTH_SHORT).show() },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp)

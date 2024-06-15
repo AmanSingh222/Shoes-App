@@ -61,7 +61,8 @@ fun ProductItem(
     Box(
         modifier = Modifier
             .padding(20.dp)
-            .size(168.dp, 210.dp).clickable {onClick.invoke() }
+            .size(168.dp, 210.dp)
+            .clickable { onClick.invoke() }
     ) {
         Box(
             modifier = Modifier

@@ -16,27 +16,21 @@ fun AppNavHost(
     modifier: Modifier = Modifier,
     startDestination:String = NavigationItem.PRODUCT
 ) {
-//    val navController = rememberNavController()
-//    NavHost(
-//        navController = navController,
-//        startDestination = startDestination,
-//        modifier = modifier
-//    ) {
 
         val navController: NavHostController = rememberNavController()
         NavHost(navController = navController,startDestination= startDestination){
             composable(NavigationItem.PRODUCT) {
                 ProductScreen(navController)
-                // HomeScreen()
             }
             composable(
                 "${NavigationItem.PRODUCT_DETAILS}/{id}",
                 arguments = listOf(navArgument("id") { type = NavType.StringType })
             ) {
-                val id: String? = it.arguments?.getString("")
+                val id: String? = it.arguments?.getString("id")
                 if (id != null)
                     ProductDetailScreen(id, navController)
             }
         }
-//    }
+
 }
+

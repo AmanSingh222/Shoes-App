@@ -27,7 +27,7 @@ fun ProductScreen(navController: NavController) {
     LazyVerticalGrid(columns = GridCells.Fixed(2),modifier= Modifier.padding(8.dp)){
         items(products){
             ProductItem(product = it) {
-                navController.navigate("NavigationItem.PRODUCT_DETAILS/${it.id}")
+                navController.navigate("${NavigationItem.PRODUCT_DETAILS}/${it.id}")
             }
         }
     }
